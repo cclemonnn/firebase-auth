@@ -1,8 +1,12 @@
 import Signup from "./Signup";
-import "./App.css";
+import { AuthProvider } from "../context/AuthContext";
 
 function App() {
-  return <Signup />;
+  return (
+    <AuthProvider>
+      <Signup />
+    </AuthProvider>
+  );
 }
 
 export default App;
