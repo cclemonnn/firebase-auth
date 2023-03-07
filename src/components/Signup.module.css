@@ -1,0 +1,42 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+  padding: 50px 100px;
+}
+
+.signUpForm {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
+  padding: 10px 15px;
+  max-width: 500px;
+  width: 100%;
+  min-width: 150px;
+  border: 3px solid #cc00cc;
+  border-radius: 3px;
+  background-color: #330066;
+  box-shadow: 1px 1px 10px rgba(72, 61, 139, 0.7);
+}
+
+.inputContainer {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  color: #f5deb3;
+}
+
+button {
+  color: #f5deb3;
+  background-color: #483d8b;
+  border: 1px solid #87cefa;
+  border-radius: 3px;
+  padding: 2px 5px;
+}
+
+button:hover {
+  cursor: pointer;
+}
