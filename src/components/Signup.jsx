@@ -1,4 +1,5 @@
 import { useRef, useState, useEffect } from "react";
+import { Link } from "react-router-dom";
 import { useAuth } from "../context/AuthContext";
 import s from "./Signup.module.css";
 
@@ -10,19 +11,19 @@ function Signup() {
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
 
-  const { signUp, currentUser } = useAuth();
+  const { signUp } = useAuth();
 
-  useEffect(() => {
-    let timeout;
-    if (error !== "") {
-      timeout = setTimeout(() => {
-        setError("");
-      }, 3000);
-    }
-    return () => {
-      clearTimeout(timeout);
-    };
-  }, [error]);
+  // useEffect(() => {
+  //   let timeout;
+  //   if (error !== "") {
+  //     timeout = setTimeout(() => {
+  //       setError("");
+  //     }, 3000);
+  //   }
+  //   return () => {
+  //     clearTimeout(timeout);
+  //   };
+  // }, [error]);
 
   async function handleSubmit(e) {
     e.preventDefault();
@@ -33,7 +34,7 @@ function Signup() {
     }
 
     try {
-      // setError("");
+      setError("");
       setLoading(true);
       await signUp(emailRef.current.value, passwordRef.current.value);
     } catch {
@@ -80,7 +81,9 @@ function Signup() {
         </button>
       </form>
 
-      <div className={s.alreadyText}>Already have an account? Sign in</div>
+      <div className={s.alreadyText}>
+        Already have an account? <Link to="/login">Log In</Link>{" "}
+      </div>
     </div>
   );
 }
