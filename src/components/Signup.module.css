@@ -4,6 +4,7 @@
   align-items: center;
   gap: 20px;
   padding: 50px 100px;
+  position: relative;
 }
 
 .signUpForm {
@@ -39,4 +40,14 @@ button {
 
 button:hover {
   cursor: pointer;
+}
+
+.alert {
+  background-color: #ffcccc;
+  color: #ff4500;
+  box-shadow: 1px 1px 5px rgba(255, 140, 0, 0.5);
+  padding: 2px 10px;
+  border-radius: 2px;
+  position: absolute;
+  top: 20px;
 }
