@@ -39,9 +39,9 @@ function Signup() {
       await signUp(emailRef.current.value, passwordRef.current.value);
     } catch {
       setError("Failed to create an account");
+    } finally {
+      setLoading(false);
     }
-
-    setLoading(false);
   }
 
   return (
