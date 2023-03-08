@@ -44,6 +44,8 @@ button {
 
 button:hover {
   cursor: pointer;
+  background-color: #f5deb3;
+  color: #483d8b;
 }
 
 .alert {
