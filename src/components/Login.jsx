@@ -1,5 +1,5 @@
 import { useRef, useState, useEffect } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useAuth } from "../context/AuthContext";
 import s from "./Signup.module.css";
 
@@ -9,6 +9,8 @@ function Login() {
 
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
+
+  const navigate = useNavigate();
 
   const { logIn } = useAuth();
 
@@ -31,11 +33,13 @@ function Login() {
       setError("");
       setLoading(true);
       await logIn(emailRef.current.value, passwordRef.current.value);
+
+      navigate("/");
     } catch {
       setError("Failed to sign in");
+    } finally {
+      setLoading(false);
     }
-
-    setLoading(false);
   }
 
   return (
