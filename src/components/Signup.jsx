@@ -1,4 +1,4 @@
-import { useRef, useState } from "react";
+import { useRef, useState, useEffect } from "react";
 import { useAuth } from "../context/AuthContext";
 import s from "./Signup.module.css";
 
@@ -9,6 +9,18 @@ function Signup() {
 
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
+
+  useEffect(() => {
+    let timeout;
+    if (error !== "") {
+      timeout = setTimeout(() => {
+        setError("");
+      }, 3000);
+    }
+    return () => {
+      clearTimeout(timeout);
+    };
+  }, [error]);
 
   const { signUp } = useAuth();
 
@@ -21,7 +33,7 @@ function Signup() {
     }
 
     try {
-      setError("");
+      // setError("");
       setLoading(true);
       await signUp(emailRef.current.value, passwordRef.current.value);
     } catch {
@@ -33,6 +45,7 @@ function Signup() {
 
   return (
     <div className={s.container}>
+      {error !== "" && <div className={s.alert}>{error}</div>}
       <form className={s.signUpForm} onSubmit={handleSubmit}>
         <div className={s.inputContainer}>
           <label htmlFor="email">Email:</label>
