@@ -10,6 +10,8 @@ function Signup() {
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
 
+  const { signUp, currentUser } = useAuth();
+
   useEffect(() => {
     let timeout;
     if (error !== "") {
@@ -21,8 +23,6 @@ function Signup() {
       clearTimeout(timeout);
     };
   }, [error]);
-
-  const { signUp } = useAuth();
 
   async function handleSubmit(e) {
     e.preventDefault();
@@ -46,6 +46,7 @@ function Signup() {
   return (
     <div className={s.container}>
       {error !== "" && <div className={s.alert}>{error}</div>}
+      <h1 className={s.signUpText}>Sign Up</h1>
       <form className={s.signUpForm} onSubmit={handleSubmit}>
         <div className={s.inputContainer}>
           <label htmlFor="email">Email:</label>
@@ -53,7 +54,7 @@ function Signup() {
         </div>
 
         <div className={s.inputContainer}>
-          <label htmlFor="password">Password:</label>
+          <label htmlFor="password">Password (6 characters min):</label>
           <input
             type="password"
             id="password"
