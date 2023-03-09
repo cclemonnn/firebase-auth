@@ -3,6 +3,7 @@ import {
   createUserWithEmailAndPassword,
   signInWithEmailAndPassword,
   onAuthStateChanged,
+  signOut,
 } from "firebase/auth";
 import { auth } from "../firebase";
 
@@ -15,11 +16,6 @@ export function useAuth() {
 export function AuthProvider({ children }) {
   const [currentUser, setCurrentUser] = useState();
   const [loading, setLoading] = useState(true);
-  const value = {
-    currentUser,
-    signUp,
-    logIn,
-  };
 
   useEffect(() => {
     // onAuthStateChanged is an event listener that listens for changes to the user authentication state, gets triggered whenever the authentication state changes (user logs in or out). When a change is detected, the callback function passed as the second argument is called, and it receives the user object as an argument.
@@ -45,6 +41,18 @@ export function AuthProvider({ children }) {
   function logIn(email, password) {
     return signInWithEmailAndPassword(auth, email, password);
   }
+
+  // Sign out user. Returns a promise
+  function logOut() {
+    return signOut(auth);
+  }
+
+  const value = {
+    currentUser,
+    signUp,
+    logIn,
+    logOut,
+  };
 
   return (
     <AuthContext.Provider value={value}>
