@@ -7,11 +7,11 @@
   position: relative;
 }
 
-.signUpText {
+.title {
   color: #6a5acd;
 }
 
-.signUpForm {
+.form {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -27,6 +27,13 @@
   box-shadow: 1px 1px 10px rgba(72, 61, 139, 0.7);
 }
 
+.profile {
+  align-items: stretch;
+  gap: 30px;
+  min-height: 130px;
+  color: #f5deb3;
+}
+
 .inputContainer {
   display: flex;
   flex-direction: column;
@@ -34,7 +41,7 @@
   color: #f5deb3;
 }
 
-button {
+.btn {
   color: #f5deb3;
   background-color: #483d8b;
   border: 1px solid #87cefa;
@@ -42,7 +49,7 @@ button {
   padding: 2px 5px;
 }
 
-button:hover {
+.btn:hover {
   cursor: pointer;
   background-color: #f5deb3;
   color: #483d8b;
