@@ -1,7 +1,7 @@
-import { useRef, useState, useEffect } from "react";
+import { useRef, useState } from "react";
 import { Link } from "react-router-dom";
 import { useAuth } from "../context/AuthContext";
-import s from "./Signup.module.css";
+import "./Form.css";
 
 function Signup() {
   const emailRef = useRef();
@@ -12,18 +12,6 @@ function Signup() {
   const [loading, setLoading] = useState(false);
 
   const { signUp } = useAuth();
-
-  // useEffect(() => {
-  //   let timeout;
-  //   if (error !== "") {
-  //     timeout = setTimeout(() => {
-  //       setError("");
-  //     }, 3000);
-  //   }
-  //   return () => {
-  //     clearTimeout(timeout);
-  //   };
-  // }, [error]);
 
   async function handleSubmit(e) {
     e.preventDefault();
@@ -45,16 +33,16 @@ function Signup() {
   }
 
   return (
-    <div className={s.container}>
-      {error !== "" && <div className={s.alert}>{error}</div>}
-      <h1 className={s.signUpText}>Sign Up</h1>
-      <form className={s.signUpForm} onSubmit={handleSubmit}>
-        <div className={s.inputContainer}>
+    <div className="container">
+      {error !== "" && <div className="alert">{error}</div>}
+      <h1 className="title">Sign Up</h1>
+      <form className="form" onSubmit={handleSubmit}>
+        <div className="inputContainer">
           <label htmlFor="email">Email:</label>
           <input type="email" id="email" name="email" ref={emailRef} required />
         </div>
 
-        <div className={s.inputContainer}>
+        <div className="inputContainer">
           <label htmlFor="password">Password (6 characters min):</label>
           <input
             type="password"
@@ -65,7 +53,7 @@ function Signup() {
           />
         </div>
 
-        <div className={s.inputContainer}>
+        <div className="inputContainer">
           <label htmlFor="confirm-password">Confirm Password:</label>
           <input
             type="password"
@@ -76,12 +64,12 @@ function Signup() {
           />
         </div>
 
-        <button type="submit" disabled={loading}>
+        <button type="submit" disabled={loading} className="btn">
           Sign Up
         </button>
       </form>
 
-      <div className={s.alreadyText}>
+      <div className="alreadyText">
         Already have an account? <Link to="/login">Log In</Link>{" "}
       </div>
     </div>

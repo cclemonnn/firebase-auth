@@ -1,7 +1,7 @@
-import { useRef, useState, useEffect } from "react";
+import { useRef, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { useAuth } from "../context/AuthContext";
-import s from "./Signup.module.css";
+import "./Form.css";
 
 function Login() {
   const emailRef = useRef();
@@ -13,18 +13,6 @@ function Login() {
   const navigate = useNavigate();
 
   const { logIn } = useAuth();
-
-  //   useEffect(() => {
-  //     let timeout;
-  //     if (error !== "") {
-  //       timeout = setTimeout(() => {
-  //         setError("");
-  //       }, 3000);
-  //     }
-  //     return () => {
-  //       clearTimeout(timeout);
-  //     };
-  //   }, [error]);
 
   async function handleSubmit(e) {
     e.preventDefault();
@@ -43,16 +31,16 @@ function Login() {
   }
 
   return (
-    <div className={s.container}>
-      {error !== "" && <div className={s.alert}>{error}</div>}
-      <h1 className={s.signUpText}>Log in</h1>
-      <form className={s.signUpForm} onSubmit={handleSubmit}>
-        <div className={s.inputContainer}>
+    <div className="container">
+      {error !== "" && <div className="alert">{error}</div>}
+      <h1 className="title">Log in</h1>
+      <form className="form" onSubmit={handleSubmit}>
+        <div className="inputContainer">
           <label htmlFor="email">Email:</label>
           <input type="email" id="email" name="email" ref={emailRef} required />
         </div>
 
-        <div className={s.inputContainer}>
+        <div className="inputContainer">
           <label htmlFor="password">Password:</label>
           <input
             type="password"
@@ -63,12 +51,12 @@ function Login() {
           />
         </div>
 
-        <button type="submit" disabled={loading}>
+        <button type="submit" disabled={loading} className="btn">
           Login
         </button>
       </form>
 
-      <div className={s.alreadyText}>
+      <div className="alreadyText">
         Need an account? <Link to="/signup">Sign up</Link>
       </div>
     </div>
