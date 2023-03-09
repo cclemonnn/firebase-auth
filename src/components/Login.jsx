@@ -51,13 +51,21 @@ function Login() {
           />
         </div>
 
-        <button type="submit" disabled={loading} className="btn">
-          Login
-        </button>
+        <div className="btnContainer">
+          <button type="submit" disabled={loading} className="btn">
+            Login
+          </button>
+          <Link to="/forgot-password" className="forgot link">
+            Forgot Password?
+          </Link>
+        </div>
       </form>
 
       <div className="alreadyText">
-        Need an account? <Link to="/signup">Sign up</Link>
+        Need an account?{" "}
+        <Link to="/signup" className="link">
+          Sign up
+        </Link>
       </div>
     </div>
   );
