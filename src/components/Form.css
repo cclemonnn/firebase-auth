@@ -65,9 +65,35 @@
 .alert {
   background-color: #ffcccc;
   color: #ff4500;
-  box-shadow: 1px 1px 5px rgba(255, 140, 0, 0.5);
+  box-shadow: 0px 1px 5px rgba(255, 140, 0, 0.5);
   padding: 2px 10px;
   border-radius: 2px;
   position: absolute;
   top: 20px;
+}
+
+.message {
+  background-color: #7fffd4;
+  color: #006400;
+  box-shadow: 0px 1px 5px rgba(0, 255, 0, 0.5);
+  padding: 2px 10px;
+  border-radius: 2px;
+  position: absolute;
+  top: 20px;
+}
+
+.btnContainer {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  flex-direction: column;
+}
+
+.forgot {
+  font-size: 13px;
+  color: #7b68ee;
+}
+
+.link:hover {
+  color: #00bfff;
 }
