@@ -41,6 +41,13 @@
   color: #f5deb3;
 }
 
+.update {
+  text-align: center;
+  text-decoration: none;
+  font-size: 18px;
+  font-weight: bold;
+}
+
 .btn {
   color: #f5deb3;
   background-color: #483d8b;
