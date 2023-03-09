@@ -5,6 +5,8 @@ import {
   onAuthStateChanged,
   signOut,
   sendPasswordResetEmail,
+  updateEmail,
+  updatePassword,
 } from "firebase/auth";
 import { auth } from "../firebase";
 
@@ -38,19 +40,29 @@ export function AuthProvider({ children }) {
     return createUserWithEmailAndPassword(auth, email, password);
   }
 
-  // Login in user.
+  // Login in user
   function logIn(email, password) {
     return signInWithEmailAndPassword(auth, email, password);
   }
 
-  // Sign out user.
+  // Sign out user
   function logOut() {
     return signOut(auth);
   }
 
-  // Reset user password.
+  // Reset user password
   function resetPassword(email) {
     return sendPasswordResetEmail(auth, email);
+  }
+
+  // Update user email
+  function updateUserEmail(email) {
+    return updateEmail(auth.currentUser, email);
+  }
+
+  // Update user password
+  function updateUserPassword(password) {
+    return updatePassword(auth.currentUser, password);
   }
 
   const value = {
@@ -59,6 +71,8 @@ export function AuthProvider({ children }) {
     logIn,
     logOut,
     resetPassword,
+    updateUserEmail,
+    updateUserPassword,
   };
 
   return (
