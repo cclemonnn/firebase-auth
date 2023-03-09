@@ -5,7 +5,6 @@ import "./Form.css";
 
 function ForgotPassword() {
   const emailRef = useRef();
-  const passwordRef = useRef();
 
   const [error, setError] = useState("");
   const [message, setMessage] = useState("");
