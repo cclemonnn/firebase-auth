@@ -4,6 +4,7 @@ import {
   signInWithEmailAndPassword,
   onAuthStateChanged,
   signOut,
+  sendPasswordResetEmail,
 } from "firebase/auth";
 import { auth } from "../firebase";
 
@@ -37,14 +38,19 @@ export function AuthProvider({ children }) {
     return createUserWithEmailAndPassword(auth, email, password);
   }
 
-  // Login in user. Returns a promise
+  // Login in user.
   function logIn(email, password) {
     return signInWithEmailAndPassword(auth, email, password);
   }
 
-  // Sign out user. Returns a promise
+  // Sign out user.
   function logOut() {
     return signOut(auth);
+  }
+
+  // Reset user password.
+  function resetPassword(email) {
+    return sendPasswordResetEmail(auth, email);
   }
 
   const value = {
@@ -52,6 +58,7 @@ export function AuthProvider({ children }) {
     signUp,
     logIn,
     logOut,
+    resetPassword,
   };
 
   return (
