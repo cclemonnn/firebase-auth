@@ -36,33 +36,33 @@ export function AuthProvider({ children }) {
   }, []);
 
   // Sign up new users. Returns a promise
-  function signUp(email, password) {
-    return createUserWithEmailAndPassword(auth, email, password);
+  async function signUp(email, password) {
+    return await createUserWithEmailAndPassword(auth, email, password);
   }
 
   // Login in user
-  function logIn(email, password) {
-    return signInWithEmailAndPassword(auth, email, password);
+  async function logIn(email, password) {
+    return await signInWithEmailAndPassword(auth, email, password);
   }
 
   // Sign out user
-  function logOut() {
-    return signOut(auth);
+  async function logOut() {
+    return await signOut(auth);
   }
 
   // Reset user password
-  function resetPassword(email) {
-    return sendPasswordResetEmail(auth, email);
+  async function resetPassword(email) {
+    return await sendPasswordResetEmail(auth, email);
   }
 
   // Update user email
-  function updateUserEmail(email) {
-    return updateEmail(auth.currentUser, email);
+  async function updateUserEmail(email) {
+    return await updateEmail(auth.currentUser, email);
   }
 
   // Update user password
-  function updateUserPassword(password) {
-    return updatePassword(auth.currentUser, password);
+  async function updateUserPassword(password) {
+    return await updatePassword(auth.currentUser, password);
   }
 
   const value = {
