@@ -1,0 +1,68 @@
+.nav {
+  width: 100%;
+  background-color: rgba(255, 204, 193, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  padding: 10px 5px;
+}
+
+.titleContainer {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+.signedContainer {
+  padding: 15px 20px;
+}
+
+.userContainer {
+  display: flex;
+  justify-content: space-between;
+}
+
+.btns {
+  display: flex;
+  gap: 10px;
+}
+
+.link {
+  text-decoration: none;
+}
+
+.unsignedContainer {
+  display: flex;
+  justify-content: center;
+  padding: 50px;
+}
+
+.card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  /* justify-content: center; */
+  padding: 2px 15px;
+  max-width: 300px;
+  width: 100%;
+  min-width: 120px;
+  min-height: 140px;
+  border: 3px solid #cc00cc;
+  border-radius: 3px;
+  background-color: #330066;
+  box-shadow: 1px 1px 10px rgba(72, 61, 139, 0.7);
+}
+
+.logInBtn {
+  margin-top: 50px;
+  margin-bottom: 30px;
+}
+
+.noAccount {
+  color: #00cc00;
+}
+
+.signUpLink {
+  color: #66ffb2;
+}
