@@ -2,8 +2,15 @@ import { useState, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { useAuth } from "../context/AuthContext";
 import { BsCardImage } from "react-icons/bs";
+import { RiDeleteBin2Fill } from "react-icons/ri";
 import { storage } from "../firebase";
-import { ref, uploadBytes, listAll, getDownloadURL } from "firebase/storage";
+import {
+  ref,
+  uploadBytes,
+  listAll,
+  getDownloadURL,
+  deleteObject,
+} from "firebase/storage";
 import d from "./Dashboard.module.css";
 
 function Dashboard() {
@@ -21,13 +28,20 @@ function Dashboard() {
 
       listAll(listRef).then((res) => {
         res.items.forEach((item) => {
-          // console.log(getFileName(item.fullPath));
-          getDownloadURL(item).then((url) => {
-            setImageList((prev) => [
-              ...prev,
-              { url, fileName: getFileName(item.fullPath) },
-            ]);
-          });
+          getDownloadURL(item)
+            .then((url) => {
+              setImageList((prev) => [
+                ...prev,
+                {
+                  url,
+                  fullPath: item.fullPath,
+                  fileName: getFileName(item.fullPath),
+                },
+              ]);
+            })
+            .catch((error) => {
+              console.error(error);
+            });
         });
       });
     }
@@ -54,12 +68,31 @@ function Dashboard() {
 
       setImageList((prev) => [
         ...prev,
-        { url, fileName: getFileName(snapshot.metadata.fullPath) },
+        {
+          url,
+          fullPath: snapshot.metadata.fullPath,
+          fileName: getFileName(snapshot.metadata.fullPath),
+        },
       ]);
       // console.log(setImageList);
       alert("image uploaded");
     } catch (error) {
       console.error(error);
+    }
+  }
+
+  async function handleDelete(img) {
+    const confirmed = window.confirm(`Delete ${img.fileName} ?`);
+
+    if (confirmed) {
+      const deleteRef = ref(storage, img.fullPath);
+
+      try {
+        const deletedImg = await deleteObject(deleteRef);
+        setImageList((prev) => prev.filter((item) => item !== img));
+      } catch (error) {
+        console.error(error);
+      }
     }
   }
 
@@ -123,6 +156,10 @@ function Dashboard() {
                   <img src={img.url} alt="" className={d.images} />
                   <div className={d.fileNameContainer}>
                     <div className={d.fileName}>{img.fileName}</div>
+                    <RiDeleteBin2Fill
+                      onClick={() => handleDelete(img)}
+                      className={d.binIcon}
+                    />
                   </div>
                 </div>
               );
