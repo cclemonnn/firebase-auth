@@ -2,6 +2,8 @@ import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { useAuth } from "../context/AuthContext";
 import { BsCardImage } from "react-icons/bs";
+import { storage } from "../firebase";
+import { ref, uploadBytes } from "firebase/storage";
 import d from "./Dashboard.module.css";
 
 function Dashboard() {
@@ -9,12 +11,32 @@ function Dashboard() {
   const { currentUser, logOut } = useAuth();
   const navigate = useNavigate();
 
-  async function handleLogOut() {
-    setError("");
+  // Images
+  const [imageFile, setImageFile] = useState(null);
+
+  function handleFileInputChange(e) {
+    setImageFile(e.target.files[0]);
+    console.log(e.target.files[0]);
+  }
+
+  async function handleFormSubmit(e) {
+    e.preventDefault();
+    if (!imageFile) return;
+
+    const imageRef = ref(storage, `${currentUser.uid}/${imageFile.name}`);
 
     try {
+      const snapshot = await uploadBytes(imageRef, imageFile);
+      alert("image uploaded");
+    } catch (error) {
+      console.error(error);
+    }
+  }
+
+  async function handleLogOut() {
+    setError("");
+    try {
       await logOut();
-      // navigate("/login");
     } catch {
       setError("Failed to log out");
     }
@@ -25,7 +47,7 @@ function Dashboard() {
       <nav className={d.nav}>
         <h1 className={d.titleContainer}>
           <BsCardImage className={d.imageIcon} />
-          <div className={d.titleText}>Upload Your Pictures</div>
+          <div className={d.titleText}>Upload Your Images</div>
         </h1>
       </nav>
       {currentUser ? (
@@ -48,10 +70,19 @@ function Dashboard() {
             </div>
           </div>
 
-          <form className={`${d.card} ${d.uploadForm}`}>
-            <input type="file" accept="image/*" className={d.uploadInput} />
+          {/* Upload Form */}
+          <form
+            onSubmit={handleFormSubmit}
+            className={`${d.card} ${d.uploadForm}`}
+          >
+            <input
+              type="file"
+              accept="image/*"
+              className={d.uploadInput}
+              onChange={handleFileInputChange}
+            />
             <button type="submit" className={d.btn}>
-              Upload
+              Upload Image
             </button>
           </form>
         </div>
