@@ -4,8 +4,7 @@
   box-sizing: border-box;
 }
 
-body::before {
-  content: "";
+body {
   position: absolute;
   top: 0;
   left: 0;
@@ -14,8 +13,4 @@ body::before {
   background-image: url("./background.jpg");
   background-size: cover;
   background-repeat: repeat;
-  height: 100%;
-  width: 100%;
-  filter: grayscale(20%);
-  z-index: -1;
 }
