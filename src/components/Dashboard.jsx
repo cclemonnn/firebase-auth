@@ -47,6 +47,13 @@ function Dashboard() {
               </button>
             </div>
           </div>
+
+          <form className={`${d.card} ${d.uploadForm}`}>
+            <input type="file" accept="image/*" className={d.uploadInput} />
+            <button type="submit" className={d.btn}>
+              Upload
+            </button>
+          </form>
         </div>
       ) : (
         <div className={d.unsignedContainer}>
