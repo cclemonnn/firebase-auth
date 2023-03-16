@@ -99,4 +99,8 @@
 }
 
 .fileNameContainer {
+  display: flex;
+  padding: 3px 15px;
+  justify-content: space-between;
+  align-items: center;
 }
