@@ -21,13 +21,21 @@ function Dashboard() {
 
       listAll(listRef).then((res) => {
         res.items.forEach((item) => {
+          // console.log(getFileName(item.fullPath));
           getDownloadURL(item).then((url) => {
-            setImageList((prev) => [...prev, url]);
+            setImageList((prev) => [
+              ...prev,
+              { url, fileName: getFileName(item.fullPath) },
+            ]);
           });
         });
       });
     }
   }, []);
+
+  function getFileName(path) {
+    return path.split("/").pop();
+  }
 
   function handleFileInputChange(e) {
     setImageFile(e.target.files[0]);
@@ -41,10 +49,14 @@ function Dashboard() {
 
     try {
       const snapshot = await uploadBytes(imageRef, imageFile);
+      console.log(snapshot.metadata.fullPath);
       const url = await getDownloadURL(snapshot.ref);
 
-      setImageList((prev) => [...prev, url]);
-      console.log(setImageList);
+      setImageList((prev) => [
+        ...prev,
+        { url, fileName: getFileName(snapshot.metadata.fullPath) },
+      ]);
+      // console.log(setImageList);
       alert("image uploaded");
     } catch (error) {
       console.error(error);
@@ -104,9 +116,18 @@ function Dashboard() {
             </button>
           </form>
 
-          {imageList.map((url) => {
-            return <img src={url} alt="" />;
-          })}
+          <div className={d.imgContainer}>
+            {imageList.map((img) => {
+              return (
+                <div className={d.imgCard}>
+                  <img src={img.url} alt="" className={d.images} />
+                  <div className={d.fileNameContainer}>
+                    <div className={d.fileName}>{img.fileName}</div>
+                  </div>
+                </div>
+              );
+            })}
+          </div>
         </div>
       ) : (
         <div className={d.unsignedContainer}>

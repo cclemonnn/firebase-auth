@@ -77,3 +77,26 @@
   align-items: center;
   justify-content: center;
 }
+
+.imgContainer {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  max-width: 500px;
+}
+
+.imgCard {
+  margin: 10px;
+  background-color: azure;
+  border: 1px solid red;
+}
+
+.images {
+  max-width: 100%;
+  object-fit: contain;
+  height: auto;
+  border-bottom: 2px solid blue;
+}
+
+.fileNameContainer {
+}
