@@ -1,9 +1,9 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { useAuth } from "../context/AuthContext";
 import { BsCardImage } from "react-icons/bs";
 import { storage } from "../firebase";
-import { ref, uploadBytes } from "firebase/storage";
+import { ref, uploadBytes, listAll, getDownloadURL } from "firebase/storage";
 import d from "./Dashboard.module.css";
 
 function Dashboard() {
@@ -13,10 +13,24 @@ function Dashboard() {
 
   // Images
   const [imageFile, setImageFile] = useState(null);
+  const [imageList, setImageList] = useState([]);
+
+  useEffect(() => {
+    if (currentUser) {
+      const listRef = ref(storage, `${currentUser.uid}/`);
+
+      listAll(listRef).then((res) => {
+        res.items.forEach((item) => {
+          getDownloadURL(item).then((url) => {
+            setImageList((prev) => [...prev, url]);
+          });
+        });
+      });
+    }
+  }, []);
 
   function handleFileInputChange(e) {
     setImageFile(e.target.files[0]);
-    console.log(e.target.files[0]);
   }
 
   async function handleFormSubmit(e) {
@@ -27,6 +41,10 @@ function Dashboard() {
 
     try {
       const snapshot = await uploadBytes(imageRef, imageFile);
+      const url = await getDownloadURL(snapshot.ref);
+
+      setImageList((prev) => [...prev, url]);
+      console.log(setImageList);
       alert("image uploaded");
     } catch (error) {
       console.error(error);
@@ -85,6 +103,10 @@ function Dashboard() {
               Upload Image
             </button>
           </form>
+
+          {imageList.map((url) => {
+            return <img src={url} alt="" />;
+          })}
         </div>
       ) : (
         <div className={d.unsignedContainer}>
