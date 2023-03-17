@@ -1,3 +1,5 @@
+@import url("https://fonts.googleapis.com/css2?family=Lobster&display=swap");
+
 .nav {
   width: 100%;
   background-color: rgba(255, 204, 193, 0.5);
@@ -11,7 +13,19 @@
 .titleContainer {
   display: flex;
   align-items: center;
-  gap: 15px;
+  gap: 20px;
+  font-size: 40px;
+}
+
+.titleText {
+  font-family: "Lobster", cursive;
+  color: #ffff00;
+  text-shadow: 2px 2px 5px rgb(51, 51, 255);
+  letter-spacing: 3px;
+}
+
+.imageIcon {
+  color: #0080ff;
 }
 
 .signedContainer {
