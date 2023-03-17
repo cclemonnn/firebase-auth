@@ -57,12 +57,12 @@
 
 .email {
   letter-spacing: 2px;
-  font-size: 25px;
-  color: #ff9933;
+  font-weight: bold;
+  color: #6600cc;
   border-radius: 5px;
-  padding: 1px 10px;
-  background-color: rgba(0, 0, 204, 0.7);
-  box-shadow: 1px 1px 15px rgb(255, 255, 153);
+  padding: 0px 5px;
+  background-color: rgba(102, 255, 178, 0.8);
+  box-shadow: 1px 1px 10px rgb(255, 255, 153);
 }
 
 .btns {
@@ -77,7 +77,7 @@
   color: #4c0099;
   padding: 3px 7px;
   font-size: 16px;
-  background-color: #66b2ff;
+  background-color: rgba(102, 255, 255, 0.5);
   border-radius: 3px;
   border: 2px solid #ffcc99;
 }
@@ -96,12 +96,7 @@
   text-decoration: none;
 }
 
-.unsignedContainer {
-  display: flex;
-  justify-content: center;
-  padding: 50px;
-}
-
+/* Form */
 .card {
   display: flex;
   flex-direction: column;
@@ -112,10 +107,23 @@
   width: 100%;
   min-width: 120px;
   min-height: 140px;
-  border: 3px solid #cc00cc;
+  border: 3px solid #ffcc99;
   border-radius: 3px;
-  background-color: #330066;
-  box-shadow: 1px 1px 10px rgba(72, 61, 139, 0.7);
+  background-color: rgba(255, 178, 102, 0.3);
+  box-shadow: 1px 1px 20px rgba(255, 255, 51, 0.7);
+}
+
+.uploadInput {
+  color: greenyellow;
+}
+.uploadInput:hover {
+  cursor: pointer;
+}
+
+.unsignedContainer {
+  display: flex;
+  justify-content: center;
+  padding: 50px;
 }
 
 .logInBtn {
@@ -132,7 +140,7 @@
 }
 
 .uploadForm {
-  margin: 30px 0;
+  margin: 50px 0 30px;
   gap: 20px;
   align-items: center;
   justify-content: center;
