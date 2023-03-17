@@ -85,7 +85,7 @@
 
 .btn:hover {
   cursor: pointer;
-  background-color: #33ffff;
+  background-color: rgba(255, 255, 153, 0.5);
 }
 
 .btn:active {
