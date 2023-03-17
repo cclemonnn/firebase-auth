@@ -64,7 +64,7 @@ function Login() {
       <div className="alreadyText">
         Need an account?{" "}
         <Link to="/signup" className="link">
-          Sign up
+          Sign Up
         </Link>
       </div>
     </div>
