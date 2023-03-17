@@ -88,7 +88,7 @@ function Dashboard() {
       const deleteRef = ref(storage, img.fullPath);
 
       try {
-        const deletedImg = await deleteObject(deleteRef);
+        await deleteObject(deleteRef);
         setImageList((prev) => prev.filter((item) => item !== img));
       } catch (error) {
         console.error(error);
@@ -116,9 +116,8 @@ function Dashboard() {
       {currentUser ? (
         <div className={d.signedContainer}>
           <div className={d.userContainer}>
-            <div className={d.email}>
-              <b>Email: </b>
-              {currentUser.email}
+            <div className={d.emailContainer}>
+              Email: <span className={d.email}>{currentUser.email}</span>
             </div>
 
             <div className={d.btns}>
@@ -187,17 +186,3 @@ function Dashboard() {
   );
 }
 export default Dashboard;
-
-// {error !== "" && <div className="alert">{error}</div>}
-// <h1 className="title">Profile</h1>
-// <div className="form profile">
-//   <div className="email">
-//     <strong>Email:</strong> {currentUser.email}
-//   </div>
-//   <Link to="/update-profile" className="btn update">
-//     Update Profile
-//   </Link>
-// </div>
-// <button className="btn" onClick={handleLogOut}>
-//   Log Out
-// </button>
