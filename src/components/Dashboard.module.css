@@ -133,11 +133,16 @@
 }
 
 .noAccount {
-  color: #00cc00;
+  font-size: 18px;
+  color: #66ffb2;
 }
 
 .signUpLink {
-  color: #66ffb2;
+  color: #9ff;
+}
+
+.signUpLink:hover {
+  color: #33ffff;
 }
 
 .uploadForm {
