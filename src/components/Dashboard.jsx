@@ -28,6 +28,7 @@ function Dashboard() {
 
       listAll(listRef).then((res) => {
         res.items.forEach((item) => {
+          console.log("item:", item);
           getDownloadURL(item)
             .then((url) => {
               setImageList((prev) => [
@@ -59,11 +60,19 @@ function Dashboard() {
     e.preventDefault();
     if (!imageFile) return;
 
+    // Check if fileName already in imageList
+    const fileExists = imageList.some((img) => img.fileName === imageFile.name);
+
+    if (fileExists) {
+      alert("File name already exists");
+      return;
+    }
+
     const imageRef = ref(storage, `${currentUser.uid}/${imageFile.name}`);
 
     try {
       const snapshot = await uploadBytes(imageRef, imageFile);
-      console.log(snapshot.metadata.fullPath);
+      console.log(snapshot.metadata.name);
       const url = await getDownloadURL(snapshot.ref);
 
       setImageList((prev) => [
@@ -71,7 +80,7 @@ function Dashboard() {
         {
           url,
           fullPath: snapshot.metadata.fullPath,
-          fileName: getFileName(snapshot.metadata.fullPath),
+          fileName: snapshot.metadata.name,
         },
       ]);
       // console.log(setImageList);
