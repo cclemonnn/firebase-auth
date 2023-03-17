@@ -46,6 +46,7 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
+  flex-wrap: wrap;
 }
 
 .emailContainer {
@@ -146,6 +147,7 @@
   justify-content: center;
 }
 
+/* Image */
 .imgContainer {
   display: flex;
   justify-content: center;
@@ -155,20 +157,37 @@
 
 .imgCard {
   margin: 10px;
-  background-color: azure;
-  border: 1px solid red;
+  background-color: #ccffff;
+  border: 1px solid #ff9933;
+  box-shadow: 1px 1px 15px rgba(102, 178, 255, 0.9);
 }
 
 .images {
   max-width: 100%;
   object-fit: contain;
   height: auto;
-  border-bottom: 2px solid blue;
+  border-bottom: 2px dotted #000099;
 }
 
 .fileNameContainer {
   display: flex;
-  padding: 3px 15px;
+  flex-wrap: wrap;
+  padding: 2px 15px 5px;
   justify-content: space-between;
   align-items: center;
+}
+
+.binIcon {
+  font-size: 18px;
+  color: #ff3333;
+  border-radius: 50%;
+  box-shadow: 1px 1px 10px #93f;
+}
+
+.binIcon:hover {
+  cursor: pointer;
+}
+
+.binIcon:active {
+  transform: scale(0.9);
 }
