@@ -33,7 +33,7 @@ function Login() {
   return (
     <div className="container">
       {error !== "" && <div className="alert">{error}</div>}
-      <h1 className="title">Log in</h1>
+      <h1 className="title">Log In</h1>
       <form className="form" onSubmit={handleSubmit}>
         <div className="inputContainer">
           <label htmlFor="email">Email:</label>
