@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { useAuth } from "../context/AuthContext";
 import { BsCardImage } from "react-icons/bs";
 import { RiDeleteBin2Fill } from "react-icons/ri";
@@ -16,7 +16,6 @@ import d from "./Dashboard.module.css";
 function Dashboard() {
   const [error, setError] = useState("");
   const { currentUser, logOut } = useAuth();
-  const navigate = useNavigate();
 
   // Images
   const [imageFile, setImageFile] = useState(null);
@@ -110,8 +109,16 @@ function Dashboard() {
     try {
       await logOut();
     } catch {
-      setError("Failed to log out");
+      showError("Failed to log out");
+      // setError("Failed to log out");
     }
+  }
+
+  function showError(msg) {
+    setError(msg);
+    setTimeout(() => {
+      setError("");
+    }, 2000);
   }
 
   return (
@@ -121,6 +128,8 @@ function Dashboard() {
           <BsCardImage className={d.imageIcon} />
           <div className={d.titleText}>Upload Your Images</div>
         </h1>
+
+        <div className={`${d.error} ${error !== "" && d.show}`}>{error}</div>
       </nav>
       {currentUser ? (
         <div className={d.signedContainer}>
