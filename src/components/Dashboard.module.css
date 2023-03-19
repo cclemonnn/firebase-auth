@@ -4,6 +4,7 @@
 
 /* Nav */
 .nav {
+  position: relative;
   width: 100%;
   background-color: rgba(255, 204, 193, 0.5);
   display: flex;
@@ -29,6 +30,28 @@
 
 .imageIcon {
   color: #0080ff;
+}
+
+.error {
+  font-family: "Roboto", sans-serif;
+  font-size: 18px;
+  position: absolute;
+  padding: 3px 5px;
+  border-radius: 5px;
+  bottom: -20%;
+  left: 50%;
+  transform: translateX(-50%);
+  color: #f33;
+  border: 2px solid #b22222;
+  background-color: #fc9;
+  box-shadow: 1px 1px 10px #ff4500;
+  opacity: 0;
+  transition: transform 0.5s ease-in-out, opacity 0s;
+}
+
+.error.show {
+  opacity: 1;
+  transform: translateX(-50%) translateY(100%);
 }
 
 /* Container for all signed in contents */
