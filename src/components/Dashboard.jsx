@@ -14,8 +14,9 @@ import {
 import d from "./Dashboard.module.css";
 
 function Dashboard() {
-  const [error, setError] = useState("");
   const { currentUser, logOut } = useAuth();
+  const [error, setError] = useState("");
+  const [success, setSuccess] = useState("");
 
   // Images
   const [imageFile, setImageFile] = useState(null);
@@ -40,6 +41,7 @@ function Dashboard() {
               ]);
             })
             .catch((error) => {
+              setError("Failed to load image");
               console.error(error);
             });
         });
@@ -63,7 +65,7 @@ function Dashboard() {
     const fileExists = imageList.some((img) => img.fileName === imageFile.name);
 
     if (fileExists) {
-      alert("File name already exists");
+      showError("File name already exists");
       return;
     }
 
@@ -82,10 +84,9 @@ function Dashboard() {
           fileName: snapshot.metadata.name,
         },
       ]);
-      // console.log(setImageList);
-      alert("image uploaded");
+      showSuccess("Image uploaded");
     } catch (error) {
-      console.error(error);
+      showError("Upload failed. Please try again.");
     }
   }
 
@@ -98,7 +99,9 @@ function Dashboard() {
       try {
         await deleteObject(deleteRef);
         setImageList((prev) => prev.filter((item) => item !== img));
+        showSuccess("Image deleted");
       } catch (error) {
+        showError("Failed to delete");
         console.error(error);
       }
     }
@@ -108,9 +111,9 @@ function Dashboard() {
     setError("");
     try {
       await logOut();
+      showSuccess("Log out successful");
     } catch {
       showError("Failed to log out");
-      // setError("Failed to log out");
     }
   }
 
@@ -118,7 +121,14 @@ function Dashboard() {
     setError(msg);
     setTimeout(() => {
       setError("");
-    }, 2000);
+    }, 4000);
+  }
+
+  function showSuccess(msg) {
+    setSuccess(msg);
+    setTimeout(() => {
+      setSuccess("");
+    }, 4000);
   }
 
   return (
@@ -129,7 +139,12 @@ function Dashboard() {
           <div className={d.titleText}>Upload Your Images</div>
         </h1>
 
-        <div className={`${d.error} ${error !== "" && d.show}`}>{error}</div>
+        <div className={`${d.alert} ${d.error} ${error !== "" && d.show}`}>
+          {error}
+        </div>
+        <div className={`${d.alert} ${d.success} ${success !== "" && d.show}`}>
+          {success}
+        </div>
       </nav>
       {currentUser ? (
         <div className={d.signedContainer}>
