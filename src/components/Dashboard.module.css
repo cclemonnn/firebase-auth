@@ -32,24 +32,36 @@
   color: #0080ff;
 }
 
-.error {
+/* Alert */
+.alert {
   font-family: "Roboto", sans-serif;
   font-size: 18px;
   position: absolute;
   padding: 3px 5px;
   border-radius: 5px;
-  bottom: -20%;
-  left: 50%;
   transform: translateX(-50%);
-  color: #f33;
-  border: 2px solid #b22222;
-  background-color: #fc9;
-  box-shadow: 1px 1px 10px #ff4500;
+  left: 50%;
   opacity: 0;
   transition: transform 0.5s ease-in-out, opacity 0s;
 }
 
-.error.show {
+.success {
+  bottom: -50%;
+  color: #00008b;
+  background-color: #66ffb2;
+  border: 2px solid #006400;
+  box-shadow: 1px 1px 10px #00ff7f;
+}
+
+.error {
+  bottom: -10%;
+  color: #f33;
+  background-color: #fc9;
+  border: 2px solid #b22222;
+  box-shadow: 1px 1px 10px #ff4500;
+}
+
+.alert.show {
   opacity: 1;
   transform: translateX(-50%) translateY(100%);
 }
