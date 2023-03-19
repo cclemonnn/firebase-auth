@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import { useAuth } from "../context/AuthContext";
 import { BsCardImage } from "react-icons/bs";
 import { RiDeleteBin2Fill } from "react-icons/ri";
+import { FaSpinner } from "react-icons/fa";
 import { storage } from "../firebase";
 import {
   ref,
@@ -17,6 +18,7 @@ function Dashboard() {
   const { currentUser, logOut } = useAuth();
   const [error, setError] = useState("");
   const [success, setSuccess] = useState("");
+  const [loading, setLoading] = useState(false);
 
   // Images
   const [imageFile, setImageFile] = useState(null);
@@ -24,11 +26,11 @@ function Dashboard() {
 
   useEffect(() => {
     if (currentUser) {
+      setLoading(true);
       const listRef = ref(storage, `${currentUser.uid}/`);
 
       listAll(listRef).then((res) => {
         res.items.forEach((item) => {
-          console.log("item:", item);
           getDownloadURL(item)
             .then((url) => {
               setImageList((prev) => [
@@ -46,6 +48,7 @@ function Dashboard() {
             });
         });
       });
+      setLoading(false);
     }
   }, []);
 
@@ -72,6 +75,7 @@ function Dashboard() {
     const imageRef = ref(storage, `${currentUser.uid}/${imageFile.name}`);
 
     try {
+      setLoading(true);
       const snapshot = await uploadBytes(imageRef, imageFile);
       console.log(snapshot.metadata.name);
       const url = await getDownloadURL(snapshot.ref);
@@ -87,6 +91,8 @@ function Dashboard() {
       showSuccess("Image uploaded");
     } catch (error) {
       showError("Upload failed. Please try again.");
+    } finally {
+      setLoading(false);
     }
   }
 
@@ -97,12 +103,14 @@ function Dashboard() {
       const deleteRef = ref(storage, img.fullPath);
 
       try {
+        setLoading(true);
         await deleteObject(deleteRef);
         setImageList((prev) => prev.filter((item) => item !== img));
         showSuccess("Image deleted");
       } catch (error) {
         showError("Failed to delete");
-        console.error(error);
+      } finally {
+        setLoading(false);
       }
     }
   }
@@ -139,6 +147,7 @@ function Dashboard() {
           <div className={d.titleText}>Upload Your Images</div>
         </h1>
 
+        {/* Alert */}
         <div className={`${d.alert} ${d.error} ${error !== "" && d.show}`}>
           {error}
         </div>
@@ -170,6 +179,7 @@ function Dashboard() {
             onSubmit={handleFormSubmit}
             className={`${d.card} ${d.uploadForm}`}
           >
+            {loading && <FaSpinner className={d.spinner} />}
             <input
               type="file"
               accept="image/*"
@@ -184,7 +194,7 @@ function Dashboard() {
           <div className={d.imgContainer}>
             {imageList.map((img) => {
               return (
-                <div className={d.imgCard}>
+                <div className={d.imgCard} key={img.url}>
                   <img src={img.url} alt="" className={d.images} />
                   <div className={d.fileNameContainer}>
                     <div className={d.fileName}>{img.fileName}</div>
