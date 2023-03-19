@@ -44,7 +44,6 @@ function Dashboard() {
             })
             .catch((error) => {
               setError("Failed to load image");
-              console.error(error);
             });
         });
       });
@@ -77,7 +76,6 @@ function Dashboard() {
     try {
       setLoading(true);
       const snapshot = await uploadBytes(imageRef, imageFile);
-      console.log(snapshot.metadata.name);
       const url = await getDownloadURL(snapshot.ref);
 
       setImageList((prev) => [
@@ -140,7 +138,7 @@ function Dashboard() {
   }
 
   return (
-    <>
+    <div className={d.container}>
       <nav className={d.nav}>
         <h1 className={d.titleContainer}>
           <BsCardImage className={d.imageIcon} />
@@ -225,7 +223,7 @@ function Dashboard() {
           </div>
         </div>
       )}
-    </>
+    </div>
   );
 }
 export default Dashboard;
