@@ -1,70 +1,54 @@
-# Getting Started with Create React App
+# Firebase Image Uploader (Firebase 圖片上傳器)
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+**App URL:** https://firebase-auth-storage-cclemonnn.vercel.app/
 
-## Available Scripts
+This app is an image uploader with user authentication. Users can create accounts with emails and upload images to their own account. Images will be preserved after upload.
 
-In the project directory, you can run:
+此專案是一個帶有用戶認證的圖片上傳器。用戶可以使用電子郵件創建帳戶並上傳圖片到自己的帳戶。圖片將在上傳後保存。
 
-### `npm start`
+---
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+## Project Skills (專案技能)
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+React (v6), Firebase Authentication and Storage, Javascript (ES6), CSS3, and HTML5.
 
-### `npm test`
+---
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## Features (功能)
 
-### `npm run build`
+### Sign Up (註冊)
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+- Users can sign up accounts with email addresses.
+- 用戶可以使用電子郵件註冊帳戶。
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+### Upload Images (上傳圖片)
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+- Once a user is logged in, user can upload images.
+- 用戶登錄後將可以上傳圖片。
+- Uploaded image is displayed on the user's page.
+- 上傳的圖片將顯示在用戶頁面上
 
-### `npm run eject`
+### Remove Images (刪除圖片)
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+- Users can remove images by clicking the bin icon.
+- 用戶可以通過單擊垃圾桶圖標來刪除圖片。
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+### Image Storage (圖片儲存)
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+- When a user logs in, their previously uploaded image are displayed.
+- 當用戶登錄時，之前上傳的圖片將顯示出來。
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+### Update Profile (更新個人資料)
 
-## Learn More
+- Users can change their account email addresses and passwords by clicking the "Update Profile" on their user's page.
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+- 用戶可以通過單擊用戶頁面上的“Update Profile”來更改其帳戶電子郵件和密碼。
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+### Password Reset (重置密碼)
 
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+- Users can reset their account passwords by clicking "Forgot Password?" on the login page.
+- 用戶可以通過在登錄頁面上單擊“Forgot Password?”來重置帳戶密碼。
+- They can then enter their email and click "Reset Password".
+- 接著用戶可以輸入電子郵件並單擊“Reset Password”。
+- A password reset email will be sent to their email address.
+- 一封密碼重置電子郵件將發送到用戶的電子郵件地址。
