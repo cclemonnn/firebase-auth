@@ -12,7 +12,7 @@ This app is an image uploader with user authentication. Users can create account
 
 ## Project Skills (專案技能)
 
-React (v6), Firebase Authentication and Storage, Javascript (ES6), CSS3, and HTML5.
+React (React Router v6), Firebase Authentication and Storage, Javascript (ES6), CSS3, and HTML5.
 
 ---
 
